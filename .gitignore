@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Large video datasets
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Extracted frames
+frames/
+data/raw/
+data/processed/
+
+# Trained models
+*.pth
+*.pt
+*.h5
+*.keras
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

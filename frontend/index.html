@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badminton AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        🏸 <span>Badminton AI</span>
+    </div>
+
+    <nav>
+        <a class="active" href="#">Home</a>
+        <a href="#analyze">Analyze</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+
+<main>
+
+    <section class="hero">
+        <h1>Badminton <span>Shot Recognition</span></h1>
+        <p>Upload a badminton video and identify the shot.</p>
+    </section>
+
+
+    <!-- Upload -->
+    <section class="upload-box">
+
+        <div class="upload-icon">☁</div>
+
+        <h3>Drag & drop your video here</h3>
+        <p>or</p>
+
+        <label for="videoInput" class="choose-btn">
+            📁 Choose Video
+        </label>
+
+        <input
+            type="file"
+            id="videoInput"
+            accept="video/mp4,video/avi,video/mov"
+            hidden
+        >
+
+        <small>
+            Supported formats: MP4, AVI, MOV &nbsp; (Max size: 500MB)
+        </small>
+
+    </section>
+
+
+    <!-- Analysis -->
+    <section class="analysis-card">
+
+        <div class="video-section">
+
+            <video id="videoPreview" controls></video>
+
+            <div id="noVideo">
+                Upload a video to preview it
+            </div>
+
+        </div>
+
+
+        <div class="result-section">
+
+            <p class="result-title">Predicted Shot</p>
+
+            <div class="prediction">
+                <div class="shot-icon">🏸</div>
+
+                <div>
+                    <h2 id="prediction">---</h2>
+                    <p>
+                        Confidence:
+                        <strong id="confidence">--</strong>
+                    </p>
+                </div>
+            </div>
+
+
+            <h3>Shot Classes</h3>
+
+            <div class="shot-row">
+                <span class="dot smash"></span>
+                <span>Smash</span>
+                <strong id="smash">--</strong>
+            </div>
+
+            <div class="shot-row">
+                <span class="dot clear"></span>
+                <span>Clear</span>
+                <strong id="clear">--</strong>
+            </div>
+
+            <div class="shot-row">
+                <span class="dot drop"></span>
+                <span>Drop</span>
+                <strong id="drop">--</strong>
+            </div>
+
+            <div class="shot-row">
+                <span class="dot drive"></span>
+                <span>Drive</span>
+                <strong id="drive">--</strong>
+            </div>
+
+            <div class="shot-row">
+                <span class="dot net"></span>
+                <span>Net Shot</span>
+                <strong id="net">--</strong>
+            </div>
+
+
+            <button id="analyzeBtn">
+                ▶ Analyze Video
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 Badminton AI</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
