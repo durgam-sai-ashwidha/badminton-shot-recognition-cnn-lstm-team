@@ -20,8 +20,8 @@ data/raw/
 data/processed/
 
 # Trained models
-*.pth
-*.pt
+#*.pth
+#*.pt
 *.h5
 *.keras
 
