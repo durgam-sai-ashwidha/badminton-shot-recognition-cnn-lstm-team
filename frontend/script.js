@@ -36,24 +36,47 @@ analyzeBtn.addEventListener("click", async function () {
     analyzeBtn.innerText = "⏳ Analyzing...";
     analyzeBtn.disabled = true;
 
+    try {
+        const formData = new FormData();
+        formData.append("video", file);
 
-    // TEMPORARY DEMO RESULT
-    // Later this will come from our Python backend.
+        const response = await fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            body: formData
+        });
 
-    setTimeout(() => {
+        if (!response.ok) {
+            let errorMsg = `Server error (${response.status})`;
+            try {
+                const errJson = await response.json();
+                if (errJson && errJson.detail) {
+                    errorMsg = errJson.detail;
+                }
+            } catch (_) {}
+            throw new Error(errorMsg);
+        }
 
-        document.getElementById("prediction").innerText = "SMASH";
-        document.getElementById("confidence").innerText = "84%";
+        const data = await response.json();
 
-        document.getElementById("smash").innerText = "84%";
-        document.getElementById("clear").innerText = "6%";
-        document.getElementById("drop").innerText = "4%";
-        document.getElementById("drive").innerText = "3%";
-        document.getElementById("net").innerText = "3%";
+        // Update primary prediction display
+        document.getElementById("prediction").innerText = (data.predicted_class || "---").toUpperCase();
 
-        analyzeBtn.innerText = "✓ Analysis Complete";
+        const topProb = Math.round((data.probabilities[data.predicted_class] || 0) * 100);
+        document.getElementById("confidence").innerText = `${topProb}%`;
+
+        // Update class probabilities breakdown
+        const probs = data.probabilities || {};
+        document.getElementById("smash").innerText = `${Math.round((probs["Smash"] || 0) * 100)}%`;
+        document.getElementById("clear").innerText = `${Math.round((probs["Clear"] || 0) * 100)}%`;
+        document.getElementById("drop").innerText = `${Math.round((probs["Drop"] || 0) * 100)}%`;
+        document.getElementById("drive").innerText = `${Math.round((probs["Drive"] || 0) * 100)}%`;
+        document.getElementById("net").innerText = `${Math.round((probs["Net Shot"] || 0) * 100)}%`;
+
+    } catch (error) {
+        alert(`Analysis failed: ${error.message}`);
+    } finally {
+        analyzeBtn.innerText = "▶ Analyze Video";
         analyzeBtn.disabled = false;
-
-    }, 1500);
+    }
 
 });
