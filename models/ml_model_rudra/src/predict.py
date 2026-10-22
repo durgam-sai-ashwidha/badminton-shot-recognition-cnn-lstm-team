@@ -11,7 +11,9 @@ from src.model import CNNLSTMPretrained
 
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-MODEL_PATH = ROOT_DIR / "models" / "model.pth"
+MODEL_PATH = ROOT_DIR / "model" / "model.pth"
+if not MODEL_PATH.exists():
+    MODEL_PATH = ROOT_DIR / "models" / "model.pth"
 
 CLASS_NAMES = ["Clear", "Drive", "Drop", "Net_Shot", "Smash"]
 NUM_FRAMES = 16

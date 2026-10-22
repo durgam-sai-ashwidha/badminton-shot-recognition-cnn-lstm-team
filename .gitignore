@@ -28,6 +28,12 @@ data/processed/
 # Keep Kaustub's model checkpoint in Git LFS
 !models/ml_model_kaustub/best_model.pth
 
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
 # VS Code
 .vscode/
 
