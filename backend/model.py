@@ -37,6 +37,7 @@ IDX_TO_CLASS: Dict[int, str] = {
 
 DEFAULT_CHECKPOINT_PATH = (
     Path(__file__).resolve().parent.parent
+    / "models"
     / "ml_model_ash"
     / "best_badminton_cnn_lstm_model2.pth"
 )

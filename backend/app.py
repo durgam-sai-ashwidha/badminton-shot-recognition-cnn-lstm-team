@@ -12,8 +12,8 @@ from fastapi import FastAPI, File, HTTPException, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from sirish_backend.inference import predict_video
-from sirish_backend.model import CLASS_NAMES
+from backend.inference import predict_video
+from backend.model import CLASS_NAMES
 
 app = FastAPI(
     title="Badminton Shot Recognition API",
@@ -79,7 +79,7 @@ async def predict_shot(video: UploadFile = File(...)) -> Dict[str, Any]:
                 )
             tmp_file.write(content)
 
-        # Run inference using existing sirish_backend.inference pipeline
+        # Run inference using existing backend.inference pipeline
         result = predict_video(temp_file_path)
         return {
             "predicted_index": result["predicted_index"],
@@ -111,4 +111,4 @@ async def predict_shot(video: UploadFile = File(...)) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    uvicorn.run("sirish_backend.app:app", host="127.0.0.1", port=8000, reload=False)
+    uvicorn.run("backend.app:app", host="127.0.0.1", port=8000, reload=False)

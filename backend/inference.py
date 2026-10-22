@@ -12,7 +12,7 @@ from PIL import Image
 import torch
 import torchvision.transforms as transforms
 
-from sirish_backend.model import (
+from backend.model import (
     CLASS_NAMES,
     IDX_TO_CLASS,
     BadmintonCNNLSTM,

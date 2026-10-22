@@ -26,7 +26,7 @@ data/processed/
 *.keras
 
 # Keep Kaustub's model checkpoint in Git LFS
-!ml_model_kaustub/best_model.pth
+!models/ml_model_kaustub/best_model.pth
 
 # VS Code
 .vscode/
